@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes — A Launch Prospectus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1814;
+    --paper: #F2EDE0;
+    --paper-deep: #E8E0CD;
+    --accent: #2B4C3F;
+    --accent-deep: #1E3729;
+    --rust: #B5471C;
+    --muted: #6B6258;
+    --gold: #C9A961;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 60px 120px;
+    position: relative;
+  }
+
+  /* Masthead — like a real publication */
+  .masthead {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .masthead::before, .masthead::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 4px;
+    background: var(--ink);
+  }
+  .masthead::before { top: 0; }
+  .masthead::after {
+    top: 8px;
+    height: 1px;
+  }
+
+  .masthead .pub-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(72px, 12vw, 144px);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    font-style: italic;
+  }
+  .masthead .pub-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  .masthead-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 4px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 80px;
+  }
+  .masthead-bar strong { color: var(--ink); }
+
+  /* Cover */
+  .cover {
+    padding: 40px 0 100px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 80px;
+    text-align: center;
+  }
+  .cover .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--rust);
+    margin-bottom: 32px;
+  }
+  .cover h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(40px, 6.5vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cover .lede {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .cover .byline {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--muted);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+  .cover .byline strong { color: var(--ink); }
+
+  section { margin-bottom: 96px; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rust);
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.15em;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    max-width: 720px;
+  }
+  h2 em { color: var(--rust); font-weight: 500; }
+
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  p { margin-bottom: 20px; max-width: 680px; }
+  p.lead { font-size: 19px; line-height: 1.5; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  /* The premise — dark editorial */
+  .premise {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 64px;
+    margin: 48px 0;
+    border-left: 8px solid var(--rust);
+  }
+  .premise p {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: var(--paper);
+    max-width: 100%;
+    font-style: italic;
+  }
+  .premise p:last-child { margin-bottom: 0; }
+
+  /* Pullquote */
+  .pull {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 56px auto;
+    padding: 32px 24px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    max-width: 720px;
+    text-align: center;
+  }
+  .pull .accent { color: var(--rust); font-style: normal; font-weight: 500; }
+
+  /* Manifesto block */
+  .manifesto {
+    background: var(--paper-deep);
+    padding: 56px 60px;
+    margin: 48px 0;
+    position: relative;
+  }
+  .manifesto h3 {
+    font-style: italic;
+    font-size: 28px;
+    margin-bottom: 32px;
+    color: var(--accent);
+  }
+  .manifesto-rules {
+    counter-reset: rule;
+  }
+  .manifesto-rule {
+    padding: 20px 0 20px 56px;
+    border-bottom: 1px solid var(--muted);
+    position: relative;
+    counter-increment: rule;
+  }
+  .manifesto-rule:last-child { border-bottom: none; }
+  .manifesto-rule::before {
+    content: counter(rule, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--rust);
+    font-weight: 600;
+  }
+  .manifesto-rule h4 {
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .manifesto-rule p {
+    margin-bottom: 0;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  /* Pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 48px 0;
+  }
+  .pillar {
+    padding: 36px 32px;
+    background: var(--paper-deep);
+    border-top: 3px solid var(--accent);
+    position: relative;
+  }
+  .pillar:nth-child(2) { border-top-color: var(--rust); }
+  .pillar:nth-child(3) { border-top-color: var(--gold); }
+  .pillar:nth-child(4) { border-top-color: var(--ink); }
+
+  .pillar .num {
+    font-family: 'Fraunces', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+  }
+  .pillar:nth-child(2) .num { color: var(--rust); }
+  .pillar:nth-child(3) .num { color: var(--gold); }
+  .pillar:nth-child(4) .num { color: var(--ink); }
+
+  .pillar h3 { font-size: 22px; margin-bottom: 14px; }
+  .pillar p { font-size: 15px; line-height: 1.55; margin-bottom: 14px; }
+
+  .pillar .quarterly {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* Calendar */
+  .calendar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 56px;
+    margin: 48px 0;
+  }
+  .calendar h3 {
+    color: var(--paper);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr 120px;
+    gap: 20px;
+    font-size: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(242, 237, 224, 0.15);
+    align-items: baseline;
+  }
+  .cal-grid:last-child { border-bottom: none; }
+  .cal-grid.head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+  }
+  .cal-issue {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .cal-month {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+  }
+  .cal-title { color: var(--paper); }
+  .cal-pillar {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    opacity: 0.7;
+  }
+
+  /* SAMPLE EDITIONS */
+  .edition {
+    margin: 80px 0;
+    background: white;
+    border: 1px solid var(--ink);
+    overflow: hidden;
+    box-shadow: 12px 12px 0 var(--ink);
+  }
+
+  .edition-meta {
+    background: var(--paper-deep);
+    padding: 20px 36px;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .edition-meta strong { color: var(--ink); }
+
+  .edition-header {
+    padding: 36px 44px 24px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+  }
+  .edition-header .from {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .edition-header .from strong { color: var(--ink); }
+  .edition-header .subject {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .edition-body {
+    padding: 48px 56px;
+    font-size: 17px;
+    line-height: 1.65;
+    background: white;
+  }
+  .edition-body p {
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+  .edition-body p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 400;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 12px 0 0;
+    color: var(--rust);
+  }
+  .edition-body em { color: var(--accent-deep); }
+  .edition-body strong { color: var(--ink); }
+
+  .edition-body .breaker {
+    text-align: center;
+    color: var(--rust);
+    margin: 32px 0;
+    font-size: 18px;
+    letter-spacing: 0.5em;
+  }
+
+  .edition-body .signoff {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .edition-body .signoff strong { color: var(--ink); }
+
+  .edition-body .footer-note {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: var(--paper-deep);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .edition-body .footer-note p {
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  /* Production model */
+  .production-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 48px 0;
+  }
+  .prod-card {
+    padding: 32px 28px;
+    background: var(--paper-deep);
+    border-top: 3px solid var(--ink);
+  }
+  .prod-card .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--rust);
+    margin-bottom: 12px;
+  }
+  .prod-card h3 { font-size: 22px; margin-bottom: 14px; }
+  .prod-card p { font-size: 15px; line-height: 1.55; margin-bottom: 12px; }
+  .prod-card ul { margin: 0 0 0 16px; }
+  .prod-card li { font-size: 14px; margin-bottom: 8px; line-height: 1.5; color: var(--muted); }
+
+  /* The ask */
+  .ask {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 56px 60px;
+    margin: 80px 0 0;
+    position: relative;
+  }
+  .ask::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 80px;
+    height: 8px;
+    background: var(--rust);
+  }
+  .ask h2 {
+    color: var(--paper);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .ask p {
+    color: var(--paper);
+    font-size: 18px;
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+  .ask ul {
+    margin: 24px 0 0 20px;
+    color: var(--paper);
+  }
+  .ask li {
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .colophon {
+    margin-top: 100px;
+    padding-top: 32px;
+    border-top: 4px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .colophon em {
+    color: var(--ink);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 32px 24px 80px; }
+    .pillars { grid-template-columns: 1fr; }
+    .production-grid { grid-template-columns: 1fr; }
+    .cal-grid { grid-template-columns: 50px 1fr; }
+    .cal-grid > *:nth-child(3), .cal-grid > *:nth-child(4) { display: none; }
+    .premise, .ask, .manifesto { padding: 36px 28px; }
+    .edition-body { padding: 32px 28px; }
+    .edition-header { padding: 28px 28px 20px; }
+    .edition-meta { padding: 16px 28px; flex-direction: column; gap: 4px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 20px; max-width: 100%; }
+    section { page-break-inside: avoid; }
+    .edition { page-break-before: auto; page-break-inside: avoid; box-shadow: none; border: 2px solid var(--ink); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div class="pub-name">Field Notes</div>
+    <div class="pub-meta">A monthly publication from EvaluAgent · Est. 2026</div>
+  </div>
+  <div class="masthead-bar">
+    <span>Launch Prospectus · Vol. 01</span>
+    <span>From <strong>James Marlow</strong> for <strong>Matt Jones</strong></span>
+    <span>May 2026</span>
+  </div>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="kicker">A proposal · A publication, not a campaign</div>
+    <h1>What if the cure for cold leads is the only thing marketing isn't currently doing?</h1>
+    <p class="lede">Most marketing nurture asks something. <em>Field Notes</em> wouldn't. A monthly story-led publication from EvaluAgent, written like editorial, delivered to the nurture pool, designed to build a relationship that lasts longer than a sales cycle.</p>
+    <div class="byline">
+      <span><strong>Proposal</strong></span>
+      <span><strong>Launch pilot</strong></span>
+      <span><strong>12 issues</strong></span>
+    </div>
+  </div>
+
+  <!-- THE OPENING ARGUMENT -->
+  <section>
+    <div class="section-num">01 — WHY A PUBLICATION, NOT A CAMPAIGN</div>
+    <h2>Contact centre leaders buy <em>infrequently</em>. So we should be building a relationship, not running a sequence.</h2>
+
+    <p class="lead">When a contact centre leader takes a meeting with EvaluAgent and doesn't buy, marketing's current options are limited to two unsatisfying ones. Drip them generic product updates. Or do nothing and hope they come back.</p>
+
+    <p>Both options share the same flawed assumption. They treat the prospect as a stalled deal that needs reactivating. That framing is exactly why the existing nurture isn't working.</p>
+
+    <p>The real problem is that this market doesn't buy quickly. QA platforms get bought when something forces the issue. An audit. A board question. A churn spike. A regulator. Until that moment lands, the prospect isn't refusing to buy. They're just living their life. Trying to "reactivate" them assumes they need to be brought back. They don't. They need someone interesting enough to stay in their inbox for the eighteen months until the moment arrives.</p>
+
+    <div class="premise">
+      <p>Reactivation campaigns are for products people buy frequently. Subscriptions, food delivery, retail. They don't work for considered, infrequent enterprise purchases where the buying moment is event-driven.</p>
+      <p>What works for that audience is editorial. A publication people choose to read because it tells them something about their own world they didn't already know.</p>
+    </div>
+
+    <p>This proposal is for <em>Field Notes</em>, a monthly publication from EvaluAgent. Not a sequence. Not a drip. A small editorial product that runs every month, tells stories from the contact centre market, names patterns that practitioners recognise, and lets the audience self-select back into a conversation when their moment arrives.</p>
+
+    <p>The nurture pool and closed lost are the first audience. Not because they're targets, but because they're the warmest list we already have. If <em>Field Notes</em> works for them, it works for any inbound MQL or partnership audience we want to put it in front of next.</p>
+  </section>
+
+  <!-- VOICE MANIFESTO -->
+  <section>
+    <div class="section-num">02 — THE EDITORIAL VOICE</div>
+    <h2>Six rules, then we get out of our own way.</h2>
+    <p>The voice of <em>Field Notes</em> is the voice that's already working on LinkedIn. Diagnostic, observational, written like someone who has actually been in the rooms. The editorial principles below are what protects that voice from becoming marketing-flavoured over time.</p>
+
+    <div class="manifesto">
+      <h3>The Field Notes manifesto</h3>
+      <div class="manifesto-rules">
+        <div class="manifesto-rule">
+          <h4>Patterns, not pitches.</h4>
+          <p>Every issue names a pattern observed across multiple conversations. Nothing in <em>Field Notes</em> is a feature story or a product reveal. If something can't be told as a pattern, it doesn't go in.</p>
+        </div>
+        <div class="manifesto-rule">
+          <h4>The reader is the expert.</h4>
+          <p>We write to peers, not prospects. The tone assumes the reader knows their world better than we do. Our job is to give them language for things they already feel.</p>
+        </div>
+        <div class="manifesto-rule">
+          <h4>One story per issue.</h4>
+          <p>Never a roundup. Never a links list. Never "five things we noticed this month". Each issue tells one story properly, from beginning to end.</p>
+        </div>
+        <div class="manifesto-rule">
+          <h4>No ask. Ever.</h4>
+          <p>No CTA. No "book a demo". No "download the report". No "join us at the webinar". The issue ends when the story ends. If readers want more, they reach out. We don't reach in.</p>
+        </div>
+        <div class="manifesto-rule">
+          <h4>Real material only.</h4>
+          <p>Every issue draws from real discovery calls, real customer conversations, real market patterns. Composite stories are fine when anonymised. Invented examples are not.</p>
+        </div>
+        <div class="manifesto-rule">
+          <h4>Written, not produced.</h4>
+          <p>Plain text emails. No banner images. No product callouts. No social icon footer. Visual restraint is the entire visual identity. <em>Field Notes</em> looks like it could have been written in a notebook.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      The first time <em>Field Notes</em> reads like a marketing email, it stops working. The discipline of the manifesto is what keeps it <span class="accent">earning its place in the inbox</span>.
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section>
+    <div class="section-num">03 — THE FOUR EDITORIAL PILLARS</div>
+    <h2>The same four lenses that power the LinkedIn engine, now in long form.</h2>
+    <p>The LinkedIn content programme rotates through four pillars on a weekly cadence. <em>Field Notes</em> uses the same four pillars but takes each one deeper, one issue per month, three issues per pillar per year.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">01</div>
+        <h3>Compliance &amp; Risk</h3>
+        <p>FCA regulation, Consumer Duty, vulnerability handling, fraud detection, AI accountability, data residency, governance of automated channels.</p>
+        <p>The stories practitioners can't tell publicly themselves because they're constrained by their own legal teams.</p>
+        <div class="quarterly">Jan · May · Sept</div>
+      </div>
+
+      <div class="pillar">
+        <div class="num">02</div>
+        <h3>Agent Performance</h3>
+        <p>Coaching culture, calibration, feedback frameworks, agent wellbeing, development pathways, QA as enablement.</p>
+        <p>The human layer of contact centre operations that most QA programmes ignore.</p>
+        <div class="quarterly">Feb · Jun · Oct</div>
+      </div>
+
+      <div class="pillar">
+        <div class="num">03</div>
+        <h3>Operational Efficiency</h3>
+        <p>Manual processes, automation opportunities, supervisor time, scaling without headcount, tool adoption versus tool embedment.</p>
+        <p>The unglamorous middle layer where most of the real value gets created or destroyed.</p>
+        <div class="quarterly">Mar · Jul · Nov</div>
+      </div>
+
+      <div class="pillar">
+        <div class="num">04</div>
+        <h3>AI in Contact Centres</h3>
+        <p>What's actually working, what's still a slide deck, who evaluates the AI, the procurement-versus-product question.</p>
+        <p>The most-talked-about category and the most-misunderstood. Field Notes will be honest about both.</p>
+        <div class="quarterly">Apr · Aug · Dec</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section>
+    <div class="section-num">04 — THE YEAR ONE EDITORIAL CALENDAR</div>
+    <h2>Twelve issues. Three per pillar. A full year of <em>Field Notes</em>.</h2>
+
+    <div class="calendar">
+      <h3>Field Notes · Year One</h3>
+      <div class="cal-grid head">
+        <span>Issue</span>
+        <span>Month</span>
+        <span>Working title</span>
+        <span>Pillar</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 01</span>
+        <span class="cal-month">June</span>
+        <span class="cal-title">The discovery problem dressed up as a coverage problem</span>
+        <span class="cal-pillar">Op. Efficiency</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 02</span>
+        <span class="cal-month">July</span>
+        <span class="cal-title">QA done to agents, not for them</span>
+        <span class="cal-pillar">Agent Perf.</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 03</span>
+        <span class="cal-month">August</span>
+        <span class="cal-title">The three AI walls</span>
+        <span class="cal-pillar">AI in CC</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 04</span>
+        <span class="cal-month">September</span>
+        <span class="cal-title">Consumer Duty, eighteen months in</span>
+        <span class="cal-pillar">Compliance</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 05</span>
+        <span class="cal-month">October</span>
+        <span class="cal-title">The calibration nobody calibrated</span>
+        <span class="cal-pillar">Agent Perf.</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 06</span>
+        <span class="cal-month">November</span>
+        <span class="cal-title">When supervisors became search engines</span>
+        <span class="cal-pillar">Op. Efficiency</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 07</span>
+        <span class="cal-month">December</span>
+        <span class="cal-title">Who evaluates the AI?</span>
+        <span class="cal-pillar">AI in CC</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 08</span>
+        <span class="cal-month">January</span>
+        <span class="cal-title">The audit that wrote itself</span>
+        <span class="cal-pillar">Compliance</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 09</span>
+        <span class="cal-month">February</span>
+        <span class="cal-title">Coaching cultures and the four-week silence</span>
+        <span class="cal-pillar">Agent Perf.</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 10</span>
+        <span class="cal-month">March</span>
+        <span class="cal-title">Tool bought, tool embedded, tool abandoned</span>
+        <span class="cal-pillar">Op. Efficiency</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 11</span>
+        <span class="cal-month">April</span>
+        <span class="cal-title">The procurement failure we keep calling product failure</span>
+        <span class="cal-pillar">AI in CC</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-issue">№ 12</span>
+        <span class="cal-month">May</span>
+        <span class="cal-title">Vulnerability, twelve months on</span>
+        <span class="cal-pillar">Compliance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE EDITIONS -->
+  <section>
+    <div class="section-num">05 — THREE SAMPLE EDITIONS</div>
+    <h2>The first three months of <em>Field Notes</em>, written end to end.</h2>
+    <p>The single most important question Matt will have is "what does this actually look like in a subscriber's inbox?". The three issues below are the answer. Real copy. Real subject lines. Real ending. No mocked-up structure.</p>
+  </section>
+
+  <!-- ISSUE 1 -->
+  <div class="edition">
+    <div class="edition-meta">
+      <span>Issue №<strong> 01</strong> · Operational Efficiency</span>
+      <span><strong>June 2026</strong> · est. 4 min read</span>
+    </div>
+    <div class="edition-header">
+      <div class="from">From <strong>Field Notes</strong> · hello@evaluagent.com</div>
+      <div class="subject">The discovery problem dressed up as a coverage problem</div>
+    </div>
+    <div class="edition-body">
+      <p>I've had thirteen discovery conversations with QA leaders in the last six weeks. Different industries, different sizes, different tech stacks. Every single one mentioned coverage. Almost none of them, when I pushed, had a coverage problem.</p>
+
+      <p>What they had was a discovery problem.</p>
+
+      <p>Here's what I mean. Coverage is the percentage of interactions you can evaluate against your scorecard. If your team scores 4% of calls a month, your coverage is 4%. The instinct, almost universally, is that the answer to low coverage is more reviewers, more time, more automation that takes scoring off humans. Get the percentage up.</p>
+
+      <p>But when I sit with QA leads and walk through their week, the scoring isn't the bottleneck. It's the hunt.</p>
+
+      <p>One QA specialist I spoke to last month manages quality for forty agents across eight separate systems. Her process for each agent's monthly review goes like this. Pull a date range from the contact centre platform. Cross-reference against the CRM for context. Filter for call duration above 60 seconds. Listen to the first 30 seconds of each one to check for relevance. Discard anything that's a hold, a wrong number, or a callback request. Pick four. Score them.</p>
+
+      <p>The scoring takes her twenty minutes per agent. The hunt takes her one and a half working days.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p>When her CEO asks her why coverage is so low, the implied accusation is that she isn't scoring fast enough. That she needs to score more efficiently, or score with AI assistance, or score in less depth.</p>
+
+      <p>None of those answers address the real problem. The real problem is that her tooling makes finding the right calls harder than scoring them. She's spending 80% of her week as a search engine and 20% as a quality professional.</p>
+
+      <p>Most of the AI tooling now hitting the market is solving the 20%. It scores faster. It scores at scale. It catches things humans miss. All good. But it leaves the 80% untouched. The hunt remains.</p>
+
+      <p>The QA leaders I'm talking to are starting to clock this. Slowly, then all at once. The question they're asking has shifted from <em>"how do we score more"</em> to <em>"why are we still hunting"</em>. It's a small linguistic change with a large procurement consequence. The tools that solve the hunt are different to the tools that solve the score.</p>
+
+      <p>If you're at a moment where your coverage numbers are being challenged, the question worth sitting with isn't <em>"can we score faster"</em>. It's <em>"where is the time actually going"</em>.</p>
+
+      <p>You'll probably find, like most of the leaders I've spoken to, that the answer surprises you.</p>
+
+      <div class="signoff">
+        <strong>Field Notes № 01</strong> · Until next month.
+      </div>
+
+      <div class="footer-note">
+        <p>Field Notes is a monthly publication from EvaluAgent. It comes out on the second Wednesday of the month. There's nothing to buy and nothing to sign up to. If you'd rather not receive it, the unsubscribe link below works on the first click. No charm offensive.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISSUE 2 -->
+  <div class="edition">
+    <div class="edition-meta">
+      <span>Issue №<strong> 02</strong> · Agent Performance</span>
+      <span><strong>July 2026</strong> · est. 4 min read</span>
+    </div>
+    <div class="edition-header">
+      <div class="from">From <strong>Field Notes</strong> · hello@evaluagent.com</div>
+      <div class="subject">QA done to agents, not for them</div>
+    </div>
+    <div class="edition-body">
+      <p>A Head of Quality at a 400-agent operation said something on a call last month that I haven't been able to let go of.</p>
+
+      <p>"We've spent two years building scorecards that tell us what agents got wrong. We've never built a single one that tells them how to get better."</p>
+
+      <p>She wasn't being self-critical. She was being precise. Her programme is well-run by every measurable standard. Calibration sessions happen on schedule. Coverage is healthy. Agent acknowledgement rates are above target. By any audit metric, the operation is in good shape.</p>
+
+      <p>And yet, when she sat down with the data, she realised the entire system was pointing the wrong way.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p>Most QA programmes weren't designed to develop agents. They were designed to report on agents. The distinction sounds academic until you look at how scorecards are actually constructed.</p>
+
+      <p>The questions on a typical QA scorecard are binary or near-binary. Did the agent verify the customer? Did the agent acknowledge the vulnerability flag? Did the agent comply with the call opener? Each one designed to produce a pass-or-fail data point that can be rolled up into a percentage for management.</p>
+
+      <p>The output of this is a report. A report tells you what happened. It doesn't tell anyone how to do better next time.</p>
+
+      <p>To actually develop an agent, you need a completely different artefact. You need a piece of feedback that names a specific moment, explains why that moment mattered to the customer, suggests a different approach, and ideally links to a recording or transcript of a peer doing it well. That artefact takes ten minutes per call to produce. The pass-fail scorecard takes ninety seconds.</p>
+
+      <p>Most QA teams are operating against a coverage target that assumes they're producing the ninety-second version. Almost every agent who's been QA'd in the last decade has been QA'd by the ninety-second version. The development version exists in the gaps, when a particularly good team leader has fifteen minutes and cares enough to write it.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p>You can see the consequences of this in the patterns we see across our customer base.</p>
+
+      <p>Agents say they don't trust QA scores. Of course they don't. The scores were designed for reporting, not for them.</p>
+
+      <p>Coaching cultures don't take root despite years of investment. Of course they don't. The instrument doing the scoring isn't producing coachable material.</p>
+
+      <p>Engagement scores fall in the months after QA programme launches. Counter-intuitively, of course they do. Being measured without being developed is dispiriting.</p>
+
+      <p>The fix isn't more QA. It's <em>different</em> QA. Two scorecards, not one. A compliance scorecard that does the ninety-second job for the regulator, and a development scorecard that does the ten-minute job for the agent. Different cadence, different audience, different success metric.</p>
+
+      <p>A handful of operations we work with have started splitting their programmes this way. The early signal is interesting. Agent engagement with feedback content goes up. Coaching conversations get more concrete. Team leaders report spending less time on remedial conversations because the underlying instrument is now diagnostic, not punitive.</p>
+
+      <p>It's early. Too early to claim a trend. But the leaders who are trying it have one thing in common. They stopped asking <em>"how do we improve QA"</em> and started asking <em>"who is QA actually for"</em>.</p>
+
+      <p>That's the question worth holding onto.</p>
+
+      <div class="signoff">
+        <strong>Field Notes № 02</strong> · Until next month.
+      </div>
+
+      <div class="footer-note">
+        <p>Field Notes is a monthly publication from EvaluAgent. It comes out on the second Wednesday of the month. There's nothing to buy and nothing to sign up to. If you'd rather not receive it, the unsubscribe link below works on the first click. No charm offensive.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISSUE 3 -->
+  <div class="edition">
+    <div class="edition-meta">
+      <span>Issue №<strong> 03</strong> · AI in Contact Centres</span>
+      <span><strong>August 2026</strong> · est. 5 min read</span>
+    </div>
+    <div class="edition-header">
+      <div class="from">From <strong>Field Notes</strong> · hello@evaluagent.com</div>
+      <div class="subject">The three AI walls</div>
+    </div>
+    <div class="edition-body">
+      <p>Every contact centre leader I've spoken to in the last six months is somewhere on the AI journey. Some are exploring. Some have bought. Some have deployed. Almost none of them, when pressed, can describe in concrete terms what changed as a result.</p>
+
+      <p>This isn't a failure of the technology. The technology works. It's a failure of the operating model around the technology, and the failures cluster around three walls that keep coming up in conversation. They're worth naming, because once you can see them, you can decide which one is yours.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p><strong>The first wall is the scoring wall.</strong></p>
+
+      <p>AI is being asked to score things that humans never agreed how to score in the first place. Empathy. Tone. De-escalation. These are real qualities, but the QA programmes in most operations have always scored them inconsistently between reviewers. Calibration sessions exist precisely to paper over this inconsistency, with limited success.</p>
+
+      <p>When AI is dropped into this environment, the inconsistency doesn't disappear. It gets amplified. The AI scores against a model. The model was trained on human-scored data. The human-scored data was inconsistent. So the AI is now inconsistent at scale, with the confidence of a machine and the audit trail of an algorithm. Worse, the disagreements between AI and human reviewers feel like AI errors, when they're often human-scoring errors the AI has helpfully revealed.</p>
+
+      <p>The leaders who get past this wall are the ones who used the AI deployment as a forcing function to redefine what their scorecard was actually trying to measure. The ones who didn't are still arguing about which score is right.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p><strong>The second wall is the ownership wall.</strong></p>
+
+      <p>Almost nobody, in almost any operation, has been told whose job it is to evaluate the AI itself.</p>
+
+      <p>This sounds like a small organisational detail. It isn't. AI in QA doesn't just produce scores. It produces decisions about which calls get reviewed, which agents get flagged, which compliance breaches get escalated. Those decisions used to be made by humans whose judgement could be appealed, audited, and developed.</p>
+
+      <p>Now they're being made by a model. And the question of who watches that model, who challenges its drift, who notices when it's started under-flagging vulnerability or over-flagging tonal aggression, often goes unanswered. The QA team treats it as a vendor problem. The vendor treats it as a customer-configuration problem. The result is a quiet erosion of confidence that takes months to detect and longer to fix.</p>
+
+      <p>Leaders who get past this wall have done something specific. They've appointed a named human owner for the AI's performance, with a regular review cadence and authority to intervene. It sounds obvious. It's almost never done.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p><strong>The third wall is the absorption wall.</strong></p>
+
+      <p>AI generates volumes of feedback the coaching layer underneath was never built to absorb.</p>
+
+      <p>A team leader who used to receive five flagged calls a week from a human QA process can suddenly find themselves receiving fifty from an AI-augmented one. The flags are often correct. They're just unmanageable in volume. The team leader can't have fifty coaching conversations a week. So they triage. The triaging happens informally, then becomes routine, then becomes the new normal. After six months, the coaching layer is operating at the same throughput as before, with a much larger inbox.</p>
+
+      <p>The AI hasn't changed anything operationally. It's just made the gap between flagged-and-coached more visible.</p>
+
+      <p>Getting past this wall requires more than tooling. It requires resequencing how feedback moves through the operation. Which flags route directly to agents. Which to team leaders. Which to QA review. Which to no-one because they don't meet a severity threshold. The leaders who solve this have stopped treating AI output as something to be managed and started treating it as something to be routed.</p>
+
+      <div class="breaker">· · ·</div>
+
+      <p>If any of these three walls feel familiar from where you're sitting, it's the reason your AI investment hasn't yet delivered what the business case promised.</p>
+
+      <p>They're not technology problems. They're operating model problems that the technology has surfaced. The technology will keep getting better. The operating model needs deliberate work, and that work isn't on most current QA roadmaps.</p>
+
+      <p>The good news, if it counts as good news, is that the leaders who've started naming these walls are months ahead of the ones who haven't. The first step is being able to see which wall you're standing in front of.</p>
+
+      <div class="signoff">
+        <strong>Field Notes № 03</strong> · Until next month.
+      </div>
+
+      <div class="footer-note">
+        <p>Field Notes is a monthly publication from EvaluAgent. It comes out on the second Wednesday of the month. There's nothing to buy and nothing to sign up to. If you'd rather not receive it, the unsubscribe link below works on the first click. No charm offensive.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW THIS GETS MADE -->
+  <section style="margin-top: 100px;">
+    <div class="section-num">06 — HOW THIS GETS MADE</div>
+    <h2>A production model that lasts twelve months.</h2>
+    <p>A publication that runs once and dies is worse than no publication at all. The production model below is designed to be sustainable for a year without burning anyone out.</p>
+
+    <div class="production-grid">
+      <div class="prod-card">
+        <div class="role">Editorial</div>
+        <h3>James writes the drafts</h3>
+        <p>The LinkedIn content engine produces the raw material every week. One issue per month gets extended into long form by James from existing material plus fresh discovery call input.</p>
+        <ul>
+          <li>2 hours per issue, drafting</li>
+          <li>1 hour reviewing</li>
+          <li>Draft by 25th of prior month</li>
+        </ul>
+      </div>
+      <div class="prod-card">
+        <div class="role">Production</div>
+        <h3>Marketing handles the rest</h3>
+        <p>Layout, send infrastructure, list management, deliverability monitoring, performance reporting. The standard newsletter operation, run monthly rather than weekly.</p>
+        <ul>
+          <li>HTML template (one-time build)</li>
+          <li>List import &amp; segmentation</li>
+          <li>Send schedule, second Wed</li>
+        </ul>
+      </div>
+      <div class="prod-card">
+        <div class="role">Distribution</div>
+        <h3>Nurture pool + closed lost</h3>
+        <p>Year one audience. No new list-building required. Treat existing nurture and closed lost as the founding subscribers. Add inbound MQLs and partnership audiences in year two if the model proves.</p>
+        <ul>
+          <li>~2,000 subscribers, est.</li>
+          <li>Single opt-out journey</li>
+          <li>No re-subscribe prompts</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROOF QUESTION -->
+  <section>
+    <div class="section-num">07 — HOW WE'D KNOW IT'S WORKING</div>
+    <h2>The honest measurement question.</h2>
+    <p>A publication doesn't measure like a campaign. Asking "how many meetings did <em>Field Notes</em> book this month" is the wrong question and would force the manifesto to be broken inside six months. The right measurements are softer but still real.</p>
+
+    <p><strong>Open rates above 35%.</strong> A B2B newsletter open rate above 35% suggests the subject lines and sender reputation are earning attention. The benchmark for "engagement" rather than "tolerance".</p>
+
+    <p><strong>Reply rate above 1%.</strong> Most marketing emails get a reply rate of essentially zero. A publication that prompts even one in a hundred readers to reply is doing something rare. Those replies are gold.</p>
+
+    <p><strong>Unsubscribe rate below 0.5% per issue.</strong> If <em>Field Notes</em> is earning its place, subscribers stay. If it isn't, they leave. The unsubscribe rate is the cleanest signal we have.</p>
+
+    <p><strong>Inbound mentions in sales conversations.</strong> The leading indicator that matters most. When sellers start hearing prospects say "I've been reading your <em>Field Notes</em>", the publication has crossed from broadcast to relationship. This is qualitative, not quantitative, but it's the signal that tells us the model is working.</p>
+
+    <p>Six issues in, we should know whether <em>Field Notes</em> is earning the attention we're asking for. Twelve issues in, we'll have enough data to decide whether to scale it, sharpen it, or fold it.</p>
+  </section>
+
+  <!-- THE ASK -->
+  <section class="ask">
+    <h2>Matt, what I'm asking for.</h2>
+    <p>This started as a chat about closed lost. It's grown into something I think is worth doing properly. Not a campaign. A publication.</p>
+    <p>Specifically, here's what I'd like to do together over the next 30 days:</p>
+    <ul>
+      <li>Agree the publication name and editorial principles. <em>Field Notes</em> is a working title; if your team has a better one, I'm not precious about it.</li>
+      <li>Get sign-off on the year-one editorial calendar. The four-pillar rotation should be defensible to anyone who asks.</li>
+      <li>Marketing builds the production infrastructure. HTML template, send platform, list segmentation, performance dashboard.</li>
+      <li>I draft Issue №01 by the 25th of June, ready for second-Wednesday-of-July send.</li>
+      <li>We review after Issue №03 and decide whether to keep going, change the model, or stop.</li>
+    </ul>
+    <p style="margin-top: 24px;">If it works, marketing has a content engine that runs forever. If it doesn't, we've spent three months learning what doesn't work and we've damaged nothing in the process.</p>
+  </section>
+
+  <div class="colophon">
+    <span><em>Field Notes</em> · Launch Prospectus</span>
+    <span>Marlow → Jones · Internal Draft</span>
+  </div>
+
+</div>
+</body>
+</html>
